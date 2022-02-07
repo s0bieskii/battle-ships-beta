@@ -73,7 +73,7 @@
             </font>
         </Label>
         <Label layoutX="536.0" layoutY="188.0" prefHeight="17.0" prefWidth="92.0" text="Direction: " />
-      <GridPane fx:id="map" gridLinesVisible="false" hgap="1.0" layoutX="46.0" layoutY="52.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: #3a618c" vgap="1.0">
+      <GridPane fx:id="map" layoutX="46.0" layoutY="52.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: #3a618c">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
