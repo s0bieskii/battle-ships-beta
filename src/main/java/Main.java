@@ -1,11 +1,10 @@
-import logic.BattleshipsGame;
+import gui.BattleShips;
+import javafx.application.Application;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
-        BattleshipsGame battleshipsGame = new BattleshipsGame(10, 5, 0);
-
-        battleshipsGame.prepareGame();
+        Application.launch(BattleShips.class, args);
 
     }
 }

@@ -16,6 +16,8 @@ public class BattleshipsGame {
     private final int destroyerNumber;
     private Player computer;
     private Player player;
+    private int moveCounter = 0;
+
 
 
     public BattleshipsGame(int mapDimension, int battleShipsNumber, int destroyerNumber) {
@@ -23,7 +25,7 @@ public class BattleshipsGame {
         this.mapDimension = mapDimension;
         this.battleShipsNumber = battleShipsNumber;
         this.destroyerNumber = destroyerNumber;
-        checkCreateMapIsPossible(mapDimension, battleShipsNumber, destroyerNumber);
+        prepareGame();
     }
 
     public void prepareGame() {
@@ -32,18 +34,14 @@ public class BattleshipsGame {
         player = new Player("Player", battleShipsNumber, destroyerNumber, createMap());
         randomSetShipsOnMap(computer);
         LOGGER.info("Created players. computer: " + computer + ", player: " + player);
-        System.out.println();
-        System.out.println("************************************");
-        System.out.println("*** Welcome in Battleship game! ***");
-        System.out.println("************************************");
-        System.out.println("Lets start the game!");
+        System.out.println("Game prepared");
         printMap(player.getMap());
-        playerMapCreator();
-        start();
     }
 
     public void start() {
+        playerMapCreator();
         while (player.getHealth() > 0 || computer.getHealth() > 0) {
+            moveCounter++;
             while (true) {
                 printMap(computer.showShotsMap());
                 Coordinates playerCoordinates = getCoordinatesToShot();
@@ -333,8 +331,20 @@ public class BattleshipsGame {
         return min + random.nextInt(max);
     }
 
-    private int getTotalShips() {
+    public int getTotalShips() {
         return battleShipsNumber + destroyerNumber;
+    }
+
+    public int getPlayerHp() {
+        return player.getHealth();
+    }
+
+    public int getComputerHp() {
+        return computer.getHealth();
+    }
+
+    public int getCurrentMove() {
+        return moveCounter;
     }
 
 }
