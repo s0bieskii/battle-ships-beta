@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainAnchor" maxHeight="532.0" maxWidth="606.0" minHeight="400.0" minWidth="400.0" prefHeight="475.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.BattleShipsController">
+   <children>
+      <ChoiceBox fx:id="destroyersAmount" layoutX="310.0" layoutY="296.0" prefHeight="25.0" prefWidth="58.0" />
+      <Label layoutX="182.0" layoutY="262.0" prefHeight="17.0" prefWidth="105.0" text="battleships amount:" />
+      <Label layoutX="182.0" layoutY="225.0" prefHeight="17.0" prefWidth="105.0" text="map dimension:" />
+      <Label layoutX="182.0" layoutY="300.0" prefHeight="17.0" prefWidth="105.0" text="destroyer amount:" />
+      <ChoiceBox fx:id="mapDimension" layoutX="310.0" layoutY="221.0" prefHeight="25.0" prefWidth="58.0" />
+      <ChoiceBox fx:id="battleshipsAmount" layoutX="310.0" layoutY="258.0" prefHeight="25.0" prefWidth="58.0" />
+      <ImageView fitHeight="96.0" fitWidth="342.0" layoutX="104.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../battleship.png" />
+         </image></ImageView>
+      <Button fx:id="startButton" layoutX="199.0" layoutY="348.0" mnemonicParsing="false" onAction="#start" prefHeight="61.0" prefWidth="153.0" text="START" />
+   </children>
+</AnchorPane>

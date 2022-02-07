@@ -16,6 +16,10 @@ public class BattleshipsGame {
     private final int destroyerNumber;
     private Player computer;
     private Player player;
+    private int moveCounter = 0;
+    private Direction currentDirection=Direction.DOWN;
+    private ShipType currentShip;
+
 
 
     public BattleshipsGame(int mapDimension, int battleShipsNumber, int destroyerNumber) {
@@ -23,7 +27,7 @@ public class BattleshipsGame {
         this.mapDimension = mapDimension;
         this.battleShipsNumber = battleShipsNumber;
         this.destroyerNumber = destroyerNumber;
-        checkCreateMapIsPossible(mapDimension, battleShipsNumber, destroyerNumber);
+        prepareGame();
     }
 
     public void prepareGame() {
@@ -32,18 +36,14 @@ public class BattleshipsGame {
         player = new Player("Player", battleShipsNumber, destroyerNumber, createMap());
         randomSetShipsOnMap(computer);
         LOGGER.info("Created players. computer: " + computer + ", player: " + player);
-        System.out.println();
-        System.out.println("************************************");
-        System.out.println("*** Welcome in Battleship game! ***");
-        System.out.println("************************************");
-        System.out.println("Lets start the game!");
+        System.out.println("Game prepared");
         printMap(player.getMap());
-        playerMapCreator();
-        start();
     }
 
     public void start() {
+        playerMapCreator();
         while (player.getHealth() > 0 || computer.getHealth() > 0) {
+            moveCounter++;
             while (true) {
                 printMap(computer.showShotsMap());
                 Coordinates playerCoordinates = getCoordinatesToShot();
@@ -199,7 +199,7 @@ public class BattleshipsGame {
         }
     }
 
-    private boolean checkShipFit(char[][] map, Coordinates coordinates, Direction direction, ShipType shipType) {
+    public boolean checkShipFit(char[][] map, Coordinates coordinates, Direction direction, ShipType shipType) {
         boolean checkFit = false;
         Coordinates copyCoordinates = new Coordinates(coordinates.getX(), coordinates.getY());
         if (map[copyCoordinates.getX()][copyCoordinates.getY()] != 'o') {
@@ -333,8 +333,42 @@ public class BattleshipsGame {
         return min + random.nextInt(max);
     }
 
-    private int getTotalShips() {
+    public int getTotalShips() {
         return battleShipsNumber + destroyerNumber;
     }
 
+    public Direction getCurrentDirection(){
+        return currentDirection;
+    }
+
+    public void setCurrentDirection(Direction direction){
+        this.currentDirection=direction;
+    }
+
+    public ShipType getCurrentShip(){
+        return ShipType.BATTLESHIP;
+    }
+
+    public void setCurrentShip(ShipType shipType){
+        this.currentShip=shipType;
+    }
+    public int getPlayerHp() {
+        return player.getHealth();
+    }
+
+    public int getComputerHp() {
+        return computer.getHealth();
+    }
+
+    public int getCurrentMove() {
+        return moveCounter;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
