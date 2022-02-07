@@ -2,6 +2,7 @@ package gui.controller;
 
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -15,11 +16,7 @@ import logic.BattleshipsGame;
 public class GameLogicController {
 
     private BattleshipsGame game;
-    private Integer row = null;
-    private Integer column = null;
-    private Integer lastRow = null;
-    private Integer lastColumn = null;
-    private ObservableList<Integer> addList = FXCollections.observableArrayList();
+    private ObservableList<Integer> addList;
 
     @FXML
     private Button startButton;
@@ -45,9 +42,7 @@ public class GameLogicController {
         int x=0;
         int[] coordinate=new int[2];
         while(game.getTotalShips()>x){
-            if(this.row !=null && this.column !=null && this.row!=lastRow){
 
-            }
         }
 
     }
@@ -71,11 +66,15 @@ public class GameLogicController {
         setCoordinateGetEvent();
         setStartButtonMouseClickEvent();
         setRestartButtonMouseClickEvent();
-        addList.addListener((Observable observable)->{
-            if(addList.size()==2){
-                System.out.println("DODAJE STATEK");
-            } else if(addList.size()>2){
-                addList.clear();
+        addList=FXCollections.observableArrayList();
+        addList.addListener(new ListChangeListener<Integer>() {
+            @Override
+            public void onChanged(Change<? extends Integer> change) {
+                if(addList.size()==2){
+                    System.out.println("ADD SHIP");
+                } else if(addList.size()>2){
+                    addList.clear();
+                }
             }
         });
 
